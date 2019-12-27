@@ -34,7 +34,7 @@ public class OrderService {
         return orderDao.findById(id).get();
     }
     
-    //Spring Transaction will rollback only if the functiion is exception out
+    //Spring Transaction will rollback only if the function is exception out
     //try-catch will handle the exception and make it success, no exception
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     //Propagation.Required: create a new transaction if no existing transaction. If transaction exist, then use it, no creation.

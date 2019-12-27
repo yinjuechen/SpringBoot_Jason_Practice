@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().authenticationEntryPoint(authenticationEntryPointImpl)
 				.accessDeniedHandler(accessDeniedHandlerImpl).and().formLogin().usernameParameter("username")
 				.passwordParameter("password").successHandler(authenticationSuccessHandlerImpl)
-				.failureHandler(authenticationFailureHandlerImpl).and().logout().permitAll().logoutUrl("/logout")
+				.failureHandler(authenticationFailureHandlerImpl).and()
+				.logout().permitAll().logoutUrl("/logout")
 				.logoutSuccessHandler(logoutSuccessHandlerImpl).and().httpBasic();
 		// http.authorizeRequests()
 		// .anyRequest().permitAll()
