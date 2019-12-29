@@ -6,21 +6,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.mercury.SpringBootRestDemo.beans.MyUser;
 import com.mercury.SpringBootRestDemo.beans.User;
+import com.mercury.SpringBootRestDemo.daos.MyUserDao;
 import com.mercury.SpringBootRestDemo.daos.UserDao;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserDao userDao;
+	private MyUserDao myUserDao;
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		User u = userDao.findByUsername(username);
+		MyUser u = myUserDao.findByEmail(email);
 		if(u == null){
-			throw new UsernameNotFoundException(username + " not found");
+			throw new UsernameNotFoundException(email + " not found");
 		}else{
 			return u;
 		}

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercury.SpringBootRestDemo.beans.MyUser;
 import com.mercury.SpringBootRestDemo.beans.User;
 import com.mercury.SpringBootRestDemo.http.AuthenticationSuccessResponse;
 import com.mercury.SpringBootRestDemo.http.Response;
@@ -26,7 +27,7 @@ public class SecurityUtils {
         writer.flush();
         writer.close();
     }
-    public static void sendAuthenticationSuccessResponse(HttpServletResponse httpServletResponse, int status, String message, Exception exception, User user)
+    public static void sendAuthenticationSuccessResponse(HttpServletResponse httpServletResponse, int status, String message, Exception exception, MyUser user)
 			throws IOException {
 		Response response = new AuthenticationSuccessResponse(exception == null ? true : false, status, message, user);
 		System.out.println(response);

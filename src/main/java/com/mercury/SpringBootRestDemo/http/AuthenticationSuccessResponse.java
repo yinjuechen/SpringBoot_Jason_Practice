@@ -1,21 +1,22 @@
 package com.mercury.SpringBootRestDemo.http;
 
+import com.mercury.SpringBootRestDemo.beans.MyUser;
 import com.mercury.SpringBootRestDemo.beans.User;
 
 public class AuthenticationSuccessResponse extends Response {
 
-	private User user;
+	private MyUser user;
 
-	public AuthenticationSuccessResponse(boolean success, int code, String message, User user) {
+	public AuthenticationSuccessResponse(boolean success, int code, String message, MyUser myUser) {
 		super(success, code, message);
-		this.user = user;
+		this.user = myUser;
 	}
 
-	public User getUser() {
+	public MyUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(MyUser user) {
 		this.user = user;
 	}
 
