@@ -24,18 +24,16 @@ public class MyApplication {
 	@SequenceGenerator(name="my_application_seq", sequenceName="MY_APPLICATION_SEQ", allocationSize = 1)
 	@GeneratedValue(generator="my_application_seq", strategy = GenerationType.AUTO)
 	private int id;
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.DETACH)
+	@OneToOne
 	@JoinColumn(name="userid")
-	@JsonIgnore
 	private MyUser user;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+	@OneToOne
 	@JoinColumn(name="productid")
-	@JsonIgnore
 	private MyProduct product;
 	@OneToOne
-	@JoinColumn(name="status")
+	@JoinColumn(name="statusid")
 	private MyStatus status;
-	@Column
+	@Column 
 	private Date application_date;
 	@OneToOne
 	@JoinColumn(name="departmentid")
@@ -106,4 +104,5 @@ public class MyApplication {
 				+ product_qty + "]";
 	}
 	
+
 }

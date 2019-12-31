@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "MY_USER")
-public class MyUser implements UserDetails{
+public class MyUser implements UserDetails {
 	@Id
 	@SequenceGenerator(name = "my_user_seq", sequenceName = "MY_USER_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "my_user_seq", strategy = GenerationType.AUTO)
@@ -34,35 +34,22 @@ public class MyUser implements UserDetails{
 	private String email;
 	@Column
 	private String password;
-	@OneToOne
-	@JoinColumn(name = "department_id")
-	private MyDepartment department;
-
 	public MyUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MyUser(int id, String firstname, String lastname, String email, String password, MyDepartment department) {
+	public MyUser(int id, String firstname, String lastname, String email, String password) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
-		this.department = department;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public MyDepartment getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(MyDepartment department) {
-		this.department = department;
 	}
 
 	public void setId(int id) {
@@ -104,7 +91,7 @@ public class MyUser implements UserDetails{
 	@Override
 	public String toString() {
 		return "MyUser [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", password=" + password + ", department=" + department.getType() + "]";
+				+ ", password=" + password + "]";
 	}
 
 	@Override
@@ -115,9 +102,10 @@ public class MyUser implements UserDetails{
 	}
 
 	@Override
+	@JsonIgnore
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return email;
+		return this.email;
 	}
 
 	@Override

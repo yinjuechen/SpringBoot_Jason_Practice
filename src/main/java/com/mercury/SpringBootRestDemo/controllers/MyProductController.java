@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.mercury.SpringBootRestDemo.beans.MyProduct;
 import com.mercury.SpringBootRestDemo.http.Response;
 import com.mercury.SpringBootRestDemo.services.MyProductService;
@@ -33,5 +32,10 @@ public class MyProductController {
 	@PostMapping
 	public Response addProduct(@RequestBody MyProduct product){
 		return myProductService.addProduct(product);
+	}
+	
+	@GetMapping("/{id}")
+	public MyProduct getProductByProductId(@PathVariable(name="id") int productId){
+		return myProductService.getProductByProductId(productId);
 	}
 }

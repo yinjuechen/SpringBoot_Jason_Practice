@@ -16,18 +16,15 @@ public class MyStatus {
 @Id
 private int id;
 @Column
-private String status;
-@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.DETACH, mappedBy="status")
-private List<MyApplication> applications;
+private String type;
 public MyStatus() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public MyStatus(int id, String status, List<MyApplication> applications) {
+public MyStatus(int id, String type) {
 	super();
 	this.id = id;
-	this.status = status;
-	this.applications = applications;
+	this.type = type;
 }
 public int getId() {
 	return id;
@@ -35,21 +32,15 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public String getStatus() {
-	return status;
+public String getType() {
+	return type;
 }
-public void setStatus(String status) {
-	this.status = status;
-}
-public List<MyApplication> getApplications() {
-	return applications;
-}
-public void setApplications(List<MyApplication> applications) {
-	this.applications = applications;
+public void setType(String type) {
+	this.type = type;
 }
 @Override
 public String toString() {
-	return "MyStatus [id=" + id + ", status=" + status + ", applications=" + applications + "]";
+	return "MyStatus [id=" + id + ", type=" + type + "]";
 }
 
 

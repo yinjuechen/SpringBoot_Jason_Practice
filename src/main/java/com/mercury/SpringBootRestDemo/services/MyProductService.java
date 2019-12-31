@@ -27,4 +27,8 @@ public class MyProductService {
 	public List<MyProduct> getAllByCateoryId(int categoryId){
 		return myProductDao.getAllByCategoryId(categoryId);
 	}
+	
+	public MyProduct getProductByProductId(int productId){
+		return myProductDao.findById(productId).get();
+	}
 }
