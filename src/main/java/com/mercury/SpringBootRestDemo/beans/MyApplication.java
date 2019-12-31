@@ -29,7 +29,7 @@ public class MyApplication {
 	private MyUser user;
 	@OneToOne
 	@JoinColumn(name="productid")
-	private MyProduct product;
+	private MyTruckModel product;
 	@OneToOne
 	@JoinColumn(name="statusid")
 	private MyStatus status;
@@ -44,7 +44,7 @@ public class MyApplication {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MyApplication(int id, MyUser user, MyProduct product, MyStatus status, Date application_date,
+	public MyApplication(int id, MyUser user, MyTruckModel product, MyStatus status, Date application_date,
 			MyDepartment department, int product_qty) {
 		super();
 		this.id = id;
@@ -67,10 +67,10 @@ public class MyApplication {
 	public void setUser(MyUser user) {
 		this.user = user;
 	}
-	public MyProduct getProduct() {
+	public MyTruckModel getProduct() {
 		return product;
 	}
-	public void setProduct(MyProduct product) {
+	public void setProduct(MyTruckModel product) {
 		this.product = product;
 	}
 	public MyStatus getStatus() {

@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mercury.SpringBootRestDemo.beans.MyProduct;
+import com.mercury.SpringBootRestDemo.beans.MyTruckModel;
 import com.mercury.SpringBootRestDemo.http.Response;
-import com.mercury.SpringBootRestDemo.services.MyProductService;
+import com.mercury.SpringBootRestDemo.services.MyTruckModelService;
 
 @RestController
-@RequestMapping("/myproducts")
-public class MyProductController {
+@RequestMapping("/trucks")
+public class MyTruckModelController {
 	@Autowired
-	private MyProductService myProductService;
+	private MyTruckModelService myProductService;
 	
 	@GetMapping
-	public List<MyProduct> getAll(){
+	public List<MyTruckModel> getAll(){
 		return myProductService.getAll();
 	}
 	
 	@GetMapping("/category/{categoryid}")
-	public List<MyProduct> getAllByCategoryId(@PathVariable(name="categoryid") int categoryId){
+	public List<MyTruckModel> getAllByCategoryId(@PathVariable(name="categoryid") int categoryId){
 		return myProductService.getAllByCateoryId(categoryId);
 	}
 	@PostMapping
-	public Response addProduct(@RequestBody MyProduct product){
+	public MyTruckModel addProduct(@RequestBody MyTruckModel product){
 		return myProductService.addProduct(product);
 	}
 	
 	@GetMapping("/{id}")
-	public MyProduct getProductByProductId(@PathVariable(name="id") int productId){
+	public MyTruckModel getProductByProductId(@PathVariable(name="id") int productId){
 		return myProductService.getProductByProductId(productId);
 	}
 }

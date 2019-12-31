@@ -6,29 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
-import com.mercury.SpringBootRestDemo.beans.MyProduct;
-import com.mercury.SpringBootRestDemo.daos.MyProductDao;
+import com.mercury.SpringBootRestDemo.beans.MyTruckModel;
+import com.mercury.SpringBootRestDemo.daos.MyTruckModelDao;
 import com.mercury.SpringBootRestDemo.http.Response;
 
 @Service
-public class MyProductService {
+public class MyTruckModelService {
 	@Autowired
-	private MyProductDao myProductDao;
+	private MyTruckModelDao myProductDao;
 	
-	public List<MyProduct> getAll(){
+	public List<MyTruckModel> getAll(){
 		return myProductDao.findAll();
 	}
 	
-	public Response addProduct(MyProduct product){
-		myProductDao.save(product);
-		return new Response(true);
+	public MyTruckModel addProduct(MyTruckModel product){
+		return myProductDao.save(product);
 	}
 	
-	public List<MyProduct> getAllByCateoryId(int categoryId){
+	public List<MyTruckModel> getAllByCateoryId(int categoryId){
 		return myProductDao.getAllByCategoryId(categoryId);
 	}
 	
-	public MyProduct getProductByProductId(int productId){
+	public MyTruckModel getProductByProductId(int productId){
 		return myProductDao.findById(productId).get();
 	}
 }
