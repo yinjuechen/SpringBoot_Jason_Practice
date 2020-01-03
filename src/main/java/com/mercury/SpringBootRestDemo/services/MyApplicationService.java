@@ -20,8 +20,18 @@ public class MyApplicationService {
 		return myApplicationDao.findAll();
 	}
 	
+	public MyApplication getApplicationById(int applicationId){
+		return myApplicationDao.findById(applicationId).get();
+	}
 	public Response addAppliction(MyApplication application){
+		final int userId=application.getUser().getId();
+		application.setUser(myUserDao.findById(userId).get());
+		System.out.println("**************" + application);
 		myApplicationDao.save(application);
 		return new Response(true);
+	}
+	
+	public List<MyApplication> getAllByUserId(int userId){
+		return myApplicationDao.findAllByUser(myUserDao.findById(userId).get());
 	}
 }

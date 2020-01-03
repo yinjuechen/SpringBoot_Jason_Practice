@@ -38,7 +38,11 @@ public class MyUser implements UserDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public MyUser(int id){
+		this.id = id;
+	}
+	
 	public MyUser(int id, String firstname, String lastname, String email, String password) {
 		super();
 		this.id = id;
