@@ -1,16 +1,15 @@
 package com.mercury.SpringBootRestDemo.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.context.SaveContextOnUpdateOrErrorResponseWrapper;
 import org.springframework.stereotype.Service;
 
 import com.mercury.SpringBootRestDemo.beans.MyTruckDetail;
 import com.mercury.SpringBootRestDemo.beans.MyTruckModel;
 import com.mercury.SpringBootRestDemo.daos.MyTruckDetailDao;
 import com.mercury.SpringBootRestDemo.daos.MyTruckModelDao;
-import com.mercury.SpringBootRestDemo.http.Response;
 
 @Service
 public class MyTruckDetailService {
@@ -35,5 +34,16 @@ public class MyTruckDetailService {
 		truckDetails.setTruckModel(myTruckModel);
 		System.out.println("*************** " + truckDetails);
 		myTruckDetailDao.save(truckDetails);
+	}
+	
+	public List<MyTruckDetail> getAllTrucksStartDateIsNull(){
+		return myTruckDetailDao.findAllyByStartdateNull();
+	}
+	
+	public List<MyTruckDetail> getAllTrucksStartDateBetween(Date startdate, Date enddate){
+		List<MyTruckDetail> res =  myTruckDetailDao.findAllByStartdateBetween(startdate, enddate);
+		res.addAll(getAllTrucksStartDateIsNull());
+		return res;
+		 
 	}
 }
