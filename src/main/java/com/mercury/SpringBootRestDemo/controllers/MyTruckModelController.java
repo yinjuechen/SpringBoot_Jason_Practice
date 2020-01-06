@@ -1,5 +1,7 @@
 package com.mercury.SpringBootRestDemo.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +39,10 @@ public class MyTruckModelController {
 	@GetMapping("/{id}")
 	public MyTruckModel getProductByProductId(@PathVariable(name="id") int productId){
 		return myProductService.getProductByProductId(productId);
+	}
+	
+	@GetMapping("/{pickUpDate}/{returnDate}")
+	public List<MyTruckModel> getAvailabeModelsBetween(@PathVariable(name="pickUpDate") String pickUpDate, @PathVariable(name="returnDate") String returnDate) throws ParseException{
+		return myProductService.getAvailableModelBetween(new SimpleDateFormat("yyyy-MM-dd").parse(pickUpDate), new SimpleDateFormat("yyyy-MM-dd").parse(returnDate));
 	}
 }

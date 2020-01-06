@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "MY_TRUCK_DETAIL")
-public class MyTruckDetail {
+public class MyTruckDetail implements Comparable<MyTruckDetail>{
 	@Id
 	@SequenceGenerator(name = "my_truck_detail_seq", sequenceName = "MY_TRUCK_DETAIL_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "my_truck_detail_seq", strategy = GenerationType.AUTO)
@@ -41,15 +41,18 @@ public class MyTruckDetail {
 	@JoinColumn(name = "modelid")
 	private MyTruckModel truckModel;
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="truckDetail")
-	@JsonIgnore
 	private List<TruckDetailReserved> truckTimeSlots;
+	@Column
+	private String autoinsurance;
 	public MyTruckDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	public MyTruckDetail(int id, String plate, String state, String vin, int mileage, Date startdate, Date enddate,
-			MyTruckModel truckModel) {
+			MyTruckModel truckModel, List<TruckDetailReserved> truckTimeSlots, String autoinsurance) {
 		super();
 		this.id = id;
 		this.plate = plate;
@@ -59,7 +62,11 @@ public class MyTruckDetail {
 		this.startdate = startdate;
 		this.enddate = enddate;
 		this.truckModel = truckModel;
+		this.truckTimeSlots = truckTimeSlots;
+		this.autoinsurance = autoinsurance;
 	}
+
+
 
 	public MyTruckDetail(int id) {
 		super();
@@ -133,16 +140,36 @@ public class MyTruckDetail {
 	public List<TruckDetailReserved> getTruckTimeSlots() {
 		return truckTimeSlots;
 	}
-	
+	@JsonIgnore
 	public void setTruckTimeSlots(List<TruckDetailReserved> truckTimeSlots) {
 		this.truckTimeSlots = truckTimeSlots;
 	}
+
+	public String getAutoinsurance() {
+		return autoinsurance;
+	}
+
+
+
+	public void setAutoinsurance(String autoinsurance) {
+		this.autoinsurance = autoinsurance;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "MyTruckDetail [id=" + id + ", plate=" + plate + ", state=" + state + ", vin=" + vin + ", mileage="
 				+ mileage + ", startdate=" + startdate + ", enddate=" + enddate + ", truckModel=" + truckModel
-				+ ", truckTimeSlots=" + truckTimeSlots + "]";
+				+ ", truckTimeSlots=" + truckTimeSlots + ", autoinsurance=" + autoinsurance + "]";
+	}
+
+
+
+	@Override
+	public int compareTo(MyTruckDetail o) {
+		// TODO Auto-generated method stub
+		return this.getMileage() - o.getMileage();
 	}
 
 }

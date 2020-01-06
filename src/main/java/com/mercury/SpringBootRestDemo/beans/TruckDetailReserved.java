@@ -31,18 +31,21 @@ public class TruckDetailReserved {
 	private Date startdate;
 	@Column
 	private Date enddate;
+	@Column
+	private int truckmodelid;
 
 	public TruckDetailReserved() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TruckDetailReserved(int id, MyTruckDetail truckDetail, Date startdate, Date enddate) {
+	public TruckDetailReserved(int id, MyTruckDetail truckDetail, Date startdate, Date enddate, int truckmodelid) {
 		super();
 		this.id = id;
 		this.truckDetail = truckDetail;
 		this.startdate = startdate;
 		this.enddate = enddate;
+		this.truckmodelid = truckmodelid;
 	}
 
 	public int getId() {
@@ -52,10 +55,13 @@ public class TruckDetailReserved {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	// @JsonIgnore
 	public MyTruckDetail getTruckDetail() {
 		return truckDetail;
 	}
+
+	// @JsonIgnore
 	public void setTruckDetail(MyTruckDetail truckDetail) {
 		this.truckDetail = truckDetail;
 	}
@@ -76,10 +82,18 @@ public class TruckDetailReserved {
 		this.enddate = enddate;
 	}
 
+	public int getTruckmodelid() {
+		return truckmodelid;
+	}
+
+	public void setTruckmodelid(int truckmodelid) {
+		this.truckmodelid = truckmodelid;
+	}
+
 	@Override
 	public String toString() {
 		return "TruckDetailReserved [id=" + id + ", truckDetail=" + truckDetail + ", startdate=" + startdate
-				+ ", enddate=" + enddate + "]";
+				+ ", enddate=" + enddate + ", truckmodelid=" + truckmodelid + "]";
 	}
 
 }

@@ -23,7 +23,7 @@ public class MyTruckDetailService {
 	}
 	
 	public List<MyTruckDetail> getAllByModelId(int modelId){
-		return myTruckDetailDao.findAllByTruckModel(modelId);
+		return myTruckDetailDao.findAllByTruckModel(myTruckModelDao.findById(modelId).get());
 	}
 	
 	public void addTruckDetails(MyTruckDetail truckDetails){
@@ -46,4 +46,5 @@ public class MyTruckDetailService {
 		return res;
 		 
 	}
+	
 }

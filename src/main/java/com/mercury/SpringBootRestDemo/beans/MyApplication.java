@@ -75,19 +75,20 @@ public class MyApplication {
 	private Date pickupdate;
 	@Column
 	private Date returndate;
+	@Column
+	private int reservedid;
+
 	public MyApplication() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public MyApplication(int id, MyUser user, String firstname, String lastname, String email, String phone,
 			String address1, String address2, String city, String state, String zip, String driver_license,
 			String driver_license_state, Date driver_license_expired_date, Date order_date, String creditcardnumber,
 			String billingfirstname, String billinglastname, String billingaddress1, String billingaddress2,
 			String billingcity, String billingstate, String billingzip, float totalprice, Date pickupdate,
-			Date returndate) {
+			Date returndate, int reservedid) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -115,9 +116,8 @@ public class MyApplication {
 		this.totalprice = totalprice;
 		this.pickupdate = pickupdate;
 		this.returndate = returndate;
+		this.reservedid = reservedid;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -303,43 +303,37 @@ public class MyApplication {
 		this.billingzip = billingzip;
 	}
 
-
-
 	public float getTotalprice() {
 		return totalprice;
 	}
-
-
 
 	public void setTotalprice(float totalprice) {
 		this.totalprice = totalprice;
 	}
 
-
-
 	public Date getPickupdate() {
 		return pickupdate;
 	}
-
-
 
 	public void setPickupdate(Date pickupdate) {
 		this.pickupdate = pickupdate;
 	}
 
-
-
 	public Date getReturndate() {
 		return returndate;
 	}
-
-
 
 	public void setReturndate(Date returndate) {
 		this.returndate = returndate;
 	}
 
+	public int getReservedid() {
+		return reservedid;
+	}
 
+	public void setReservedid(int reservedid) {
+		this.reservedid = reservedid;
+	}
 
 	@Override
 	public String toString() {
@@ -351,7 +345,8 @@ public class MyApplication {
 				+ ", billingfirstname=" + billingfirstname + ", billinglastname=" + billinglastname
 				+ ", billingaddress1=" + billingaddress1 + ", billingaddress2=" + billingaddress2 + ", billingcity="
 				+ billingcity + ", billingstate=" + billingstate + ", billingzip=" + billingzip + ", totalprice="
-				+ totalprice + ", pickupdate=" + pickupdate + ", returndate=" + returndate + "]";
+				+ totalprice + ", pickupdate=" + pickupdate + ", returndate=" + returndate + ", reservedid="
+				+ reservedid + "]";
 	}
 
 }

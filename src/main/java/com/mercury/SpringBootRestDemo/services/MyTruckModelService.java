@@ -1,33 +1,49 @@
 package com.mercury.SpringBootRestDemo.services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.mercury.SpringBootRestDemo.beans.MyTruckModel;
 import com.mercury.SpringBootRestDemo.daos.MyTruckModelDao;
-import com.mercury.SpringBootRestDemo.http.Response;
+import com.mercury.SpringBootRestDemo.daos.TruckDetailReservedDao;
 
 @Service
 public class MyTruckModelService {
 	@Autowired
 	private MyTruckModelDao myProductDao;
-	
-	public List<MyTruckModel> getAll(){
+	@Autowired
+	private TruckDetailReservedDao truckDetailReservedDao;
+
+	public List<MyTruckModel> getAll() {
 		return myProductDao.findAll();
 	}
-	
-	public MyTruckModel addProduct(MyTruckModel product){
+
+	public MyTruckModel addProduct(MyTruckModel product) {
 		return myProductDao.save(product);
 	}
-	
-	public List<MyTruckModel> getAllByCateoryId(int categoryId){
+
+	public List<MyTruckModel> getAllByCateoryId(int categoryId) {
 		return myProductDao.getAllByCategoryId(categoryId);
 	}
-	
-	public MyTruckModel getProductByProductId(int productId){
+
+	public MyTruckModel getProductByProductId(int productId) {
 		return myProductDao.findById(productId).get();
+	}
+
+	public List<MyTruckModel> getAvailableModelBetween(Date pickUpDate, Date returnDate) {
+		List<MyTruckModel> res = new ArrayList<>();
+		List<MyTruckModel> allModel = myProductDao.findAll();
+		for (MyTruckModel model : allModel) {
+			System.out.println(model.getId());
+			Integer count = truckDetailReservedDao.reserverdModelCount(pickUpDate, returnDate, model.getId());
+			System.out.println(count);
+			if (count == null || model.getStock() > count)
+				res.add(model);
+		}
+		return res.size() > 0 ? res : null;
 	}
 }
