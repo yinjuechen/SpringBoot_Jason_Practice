@@ -1,6 +1,7 @@
 package com.mercury.SpringBootRestDemo.beans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -77,6 +79,18 @@ public class MyApplication {
 	private Date returndate;
 	@Column
 	private int reservedid;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "insurancetype1")
+	private Insurance insurance1;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "insurancetype2")
+	private Insurance insurance2;
+	@Column
+	private float insuranceprice;
+	@Column
+	private float mileageprice;
+	@Column
+	private float truckprice;
 
 	public MyApplication() {
 		super();
@@ -88,7 +102,8 @@ public class MyApplication {
 			String driver_license_state, Date driver_license_expired_date, Date order_date, String creditcardnumber,
 			String billingfirstname, String billinglastname, String billingaddress1, String billingaddress2,
 			String billingcity, String billingstate, String billingzip, float totalprice, Date pickupdate,
-			Date returndate, int reservedid) {
+			Date returndate, int reservedid, Insurance insurance1, Insurance insurance2, float insuranceprice,
+			float mileageprice, float truckprice) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -117,6 +132,11 @@ public class MyApplication {
 		this.pickupdate = pickupdate;
 		this.returndate = returndate;
 		this.reservedid = reservedid;
+		this.insurance1 = insurance1;
+		this.insurance2 = insurance2;
+		this.insuranceprice = insuranceprice;
+		this.mileageprice = mileageprice;
+		this.truckprice = truckprice;
 	}
 
 	public int getId() {
@@ -335,6 +355,46 @@ public class MyApplication {
 		this.reservedid = reservedid;
 	}
 
+	public Insurance getInsurance1() {
+		return insurance1;
+	}
+
+	public void setInsurance1(Insurance insurance1) {
+		this.insurance1 = insurance1;
+	}
+
+	public Insurance getInsurance2() {
+		return insurance2;
+	}
+
+	public void setInsurance2(Insurance insurance2) {
+		this.insurance2 = insurance2;
+	}
+
+	public float getInsuranceprice() {
+		return insuranceprice;
+	}
+
+	public void setInsuranceprice(float insuranceprice) {
+		this.insuranceprice = insuranceprice;
+	}
+
+	public float getMileageprice() {
+		return mileageprice;
+	}
+
+	public void setMileageprice(float mileageprice) {
+		this.mileageprice = mileageprice;
+	}
+
+	public float getTruckprice() {
+		return truckprice;
+	}
+
+	public void setTruckprice(float truckprice) {
+		this.truckprice = truckprice;
+	}
+
 	@Override
 	public String toString() {
 		return "MyApplication [id=" + id + ", user=" + user + ", firstname=" + firstname + ", lastname=" + lastname
@@ -346,7 +406,8 @@ public class MyApplication {
 				+ ", billingaddress1=" + billingaddress1 + ", billingaddress2=" + billingaddress2 + ", billingcity="
 				+ billingcity + ", billingstate=" + billingstate + ", billingzip=" + billingzip + ", totalprice="
 				+ totalprice + ", pickupdate=" + pickupdate + ", returndate=" + returndate + ", reservedid="
-				+ reservedid + "]";
+				+ reservedid + ", insurance1=" + insurance1 + ", insurance2=" + insurance2 + ", insuranceprice="
+				+ insuranceprice + ", mileageprice=" + mileageprice + ", truckprice=" + truckprice + "]";
 	}
 
 }

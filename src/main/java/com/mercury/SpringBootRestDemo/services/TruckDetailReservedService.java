@@ -33,6 +33,10 @@ public class TruckDetailReservedService {
 		return truckDetailReservedDao.findAllByOrderByStartdate();
 	}
 	
+	public TruckDetailReserved getById(int id){
+		return truckDetailReservedDao.findById(id).get();
+	}
+	
 	@Transactional(isolation=Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
 	public TruckDetailReserved addTimeSlot(TruckDetailReserved t){
 //		int tdId = t.getTruckDetail().getId();

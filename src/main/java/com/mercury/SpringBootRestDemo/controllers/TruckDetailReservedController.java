@@ -30,7 +30,11 @@ public class TruckDetailReservedController {
 	public TruckDetailReserved addTimeSlot(@RequestBody TruckDetailReserved t) {
 		return truckDetailReservedService.addTimeSlot(t);
 	}
-
+	
+	@GetMapping("/{id}")
+	public TruckDetailReserved getById(@PathVariable(name="id") int id){
+		return truckDetailReservedService.getById(id);
+	}
 	@GetMapping("/date/reserved/{pickUpDate}/{returnDate}")
 	public List<TruckDetailReserved> getTimeSlotBetweenStartdateAndEnddate(@PathVariable(name = "pickUpDate") String pd,
 			@PathVariable(name = "returnDate") String rd) throws ParseException {
