@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,11 @@ public class MyTruckModelController {
 	@GetMapping("/{id}")
 	public MyTruckModel getProductByProductId(@PathVariable(name="id") int productId){
 		return myProductService.getProductByProductId(productId);
+	}
+	
+	@PutMapping("/{id}")
+	public MyTruckModel updateTruckModelById(@RequestBody MyTruckModel mtm, @PathVariable(name = "id") int id){
+		return myProductService.updateTruckModelById(mtm, id);
 	}
 	
 	@GetMapping("/{pickUpDate}/{returnDate}")

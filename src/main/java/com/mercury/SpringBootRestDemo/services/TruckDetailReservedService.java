@@ -44,6 +44,7 @@ public class TruckDetailReservedService {
 		List<MyTruckDetail> truckByModel = myTruckDetailDao.findAllByTruckModel(myTruckModelDao.findById(t.getTruckmodelid()).get());
 		Collections.sort(truckByModel);
 		List<MyTruckDetail> rst = truckDetailReservedDao.findAllTruckReservedBetween(t.getStartdate(), t.getEnddate());
+		System.out.println(rst);
 		for(MyTruckDetail mtd : truckByModel){
 			if(!rst.contains(mtd)){
 				mtd.getTruckTimeSlots().add(t);
@@ -84,6 +85,13 @@ public class TruckDetailReservedService {
 		Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(returnDate);
 		int amount = truckDetailReservedDao.reserverdModelCount(startDate, endDate, modelid);
 		System.out.println("$$$$$$$$$$$$$$$$$$$  " + amount);
+	}
+	
+	public List<TruckDetailReserved> getAllByTruckDetail(int truckDetailId){
+		MyTruckDetail mtd = myTruckDetailDao.findById(truckDetailId).get();
+		if(mtd == null)
+			return null;
+		return truckDetailReservedDao.findAllByTruckDetail(mtd);
 	}
 
 }

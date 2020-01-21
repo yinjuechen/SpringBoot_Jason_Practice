@@ -91,6 +91,10 @@ public class MyApplication {
 	private float mileageprice;
 	@Column
 	private float truckprice;
+	@Column
+	private float odometerin;
+	@Column
+	private float odometerout;
 
 	public MyApplication() {
 		super();
@@ -103,7 +107,7 @@ public class MyApplication {
 			String billingfirstname, String billinglastname, String billingaddress1, String billingaddress2,
 			String billingcity, String billingstate, String billingzip, float totalprice, Date pickupdate,
 			Date returndate, int reservedid, Insurance insurance1, Insurance insurance2, float insuranceprice,
-			float mileageprice, float truckprice) {
+			float mileageprice, float truckprice, float odometerin, float odometerout) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -137,6 +141,8 @@ public class MyApplication {
 		this.insuranceprice = insuranceprice;
 		this.mileageprice = mileageprice;
 		this.truckprice = truckprice;
+		this.odometerin = odometerin;
+		this.odometerout = odometerout;
 	}
 
 	public int getId() {
@@ -395,6 +401,22 @@ public class MyApplication {
 		this.truckprice = truckprice;
 	}
 
+	public float getOdometerin() {
+		return odometerin;
+	}
+
+	public void setOdometerin(float odometerin) {
+		this.odometerin = odometerin;
+	}
+
+	public float getOdometerout() {
+		return odometerout;
+	}
+
+	public void setOdometerout(float odometerout) {
+		this.odometerout = odometerout;
+	}
+
 	@Override
 	public String toString() {
 		return "MyApplication [id=" + id + ", user=" + user + ", firstname=" + firstname + ", lastname=" + lastname
@@ -407,7 +429,8 @@ public class MyApplication {
 				+ billingcity + ", billingstate=" + billingstate + ", billingzip=" + billingzip + ", totalprice="
 				+ totalprice + ", pickupdate=" + pickupdate + ", returndate=" + returndate + ", reservedid="
 				+ reservedid + ", insurance1=" + insurance1 + ", insurance2=" + insurance2 + ", insuranceprice="
-				+ insuranceprice + ", mileageprice=" + mileageprice + ", truckprice=" + truckprice + "]";
+				+ insuranceprice + ", mileageprice=" + mileageprice + ", truckprice=" + truckprice + ", odometerin="
+				+ odometerin + ", odometerout=" + odometerout + "]";
 	}
 
 }

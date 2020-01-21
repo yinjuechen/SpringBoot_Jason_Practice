@@ -46,4 +46,10 @@ public class MyTruckModelService {
 		}
 		return res.size() > 0 ? res : null;
 	}
+	
+	public MyTruckModel updateTruckModelById(MyTruckModel mtm,int id){
+		MyTruckModel old = myProductDao.findById(id).get();
+		old = mtm;
+		return myProductDao.save(old);
+	}
 }

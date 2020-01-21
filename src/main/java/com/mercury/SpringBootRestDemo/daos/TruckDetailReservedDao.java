@@ -3,6 +3,7 @@ package com.mercury.SpringBootRestDemo.daos;
 import java.util.Date;
 import java.util.List;
 
+import org.assertj.core.util.diff.myers.MyersDiff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,4 +32,6 @@ public interface TruckDetailReservedDao extends JpaRepository<TruckDetailReserve
 			+ "OR t.ENDDATE BETWEEN :pickUpDate and :returnDate "
 			+ "group by TRUCKMODELID) t1 where t1.TRUCKMODELID= :truckmodelid", nativeQuery = true)
 	Integer reserverdModelCount(@Param("pickUpDate") Date pickUpDate, @Param("returnDate") Date returnDate, @Param("truckmodelid") int truckmodelid);
+	
+	List<TruckDetailReserved> findAllByTruckDetail(MyTruckDetail truckDetail);
 }

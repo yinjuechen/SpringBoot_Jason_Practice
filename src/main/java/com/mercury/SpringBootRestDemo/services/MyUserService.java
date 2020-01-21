@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mercury.SpringBootRestDemo.beans.MyDepartment;
+import com.mercury.SpringBootRestDemo.beans.MyProfile;
 import com.mercury.SpringBootRestDemo.beans.MyUser;
 import com.mercury.SpringBootRestDemo.daos.MyDepartmentDao;
 import com.mercury.SpringBootRestDemo.daos.MyUserDao;
@@ -28,6 +29,8 @@ public class MyUserService {
 	public Response register(MyUser user){
 		System.out.println("************" + user);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		MyProfile profile = new MyProfile(2);
+		user.setProfile(profile);
 		myUserDao.save(user);
 		return new Response(true);
 	}

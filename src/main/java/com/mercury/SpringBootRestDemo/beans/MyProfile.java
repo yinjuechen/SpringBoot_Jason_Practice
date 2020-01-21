@@ -1,27 +1,28 @@
 package com.mercury.SpringBootRestDemo.beans;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
-@Table(name = "MY_CATEGORY")
-public class MyCategory {
+@Table(name="MY_PROFILE")
+public class MyProfile implements GrantedAuthority{
 	@Id
 	private int id;
 	@Column
 	private String type;
-	public MyCategory() {
+	public MyProfile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MyCategory(int id, String type) {
+	public MyProfile(int id) {
+		super();
+		this.id = id;
+	}
+	public MyProfile(int id, String type) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -40,9 +41,12 @@ public class MyCategory {
 	}
 	@Override
 	public String toString() {
-		System.out.println("In Category");
-		return "MyCategory [id=" + id + ", type=" + type + "]";
+		return "MyProfile [id=" + id + ", type=" + type + "]";
 	}
-	
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return type;
+	}
 	
 }

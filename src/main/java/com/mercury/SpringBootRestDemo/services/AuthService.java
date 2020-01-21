@@ -16,10 +16,13 @@ public class AuthService {
 	private MyUserDao myUserDao;
 
 	public Response checklogin(Authentication authentication) {
+		System.out.println("In Authen Service");
 		if (authentication != null) {
 			Response response = new AuthenticationSuccessResponse(true, 200, "Logged In!", myUserDao.findByEmail(authentication.getName()));
+			System.out.println("Login Success");
 			return response;
 		} else {
+			System.out.println("Login Failed");
 			return new Response(false);
 		}
 	}

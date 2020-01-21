@@ -53,4 +53,8 @@ public class TruckDetailReservedController {
 	public void getModelCountBetweenDate(@PathVariable(name="modelid") int modelid, @PathVariable(name="pickUpDate") String pd, @PathVariable(name="returnDate") String rd) throws ParseException {
 		truckDetailReservedService.getModelCountBetweenDate(modelid, pd, rd);
 	}
+	@GetMapping("/trucks/{id}")
+	public List<TruckDetailReserved> getTruckDetailReservedByTruckDetail(@PathVariable(name="id") int truckDetailId){
+		return truckDetailReservedService.getAllByTruckDetail(truckDetailId);
+	}
 }

@@ -45,16 +45,16 @@ public class MyTruckModel {
 	private int maxseat;
 	@Column
 	private int mpg;
+	@Column
+	private float mileprice;
 
 	public MyTruckModel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-
-
 	public MyTruckModel(int id, String brand, int stock, MyCategory category, String image, String model, int year,
-			int price, int minseat, int maxseat, int mpg) {
+			int price, int minseat, int maxseat, int mpg, float mileprice) {
 		super();
 		this.id = id;
 		this.brand = brand;
@@ -67,9 +67,8 @@ public class MyTruckModel {
 		this.minseat = minseat;
 		this.maxseat = maxseat;
 		this.mpg = mpg;
+		this.mileprice = mileprice;
 	}
-
-
 
 	public MyTruckModel(int id) {
 		this.id = id;
@@ -175,11 +174,18 @@ public class MyTruckModel {
 
 
 
+	public float getMileprice() {
+		return mileprice;
+	}
+
+	public void setMileprice(float mileprice) {
+		this.mileprice = mileprice;
+	}
 	@Override
 	public String toString() {
 		return "MyTruckModel [id=" + id + ", brand=" + brand + ", stock=" + stock + ", category=" + category
 				+ ", image=" + image + ", model=" + model + ", year=" + year + ", price=" + price + ", minseat="
-				+ minseat + ", maxseat=" + maxseat + ", mpg=" + mpg + "]";
+				+ minseat + ", maxseat=" + maxseat + ", mpg=" + mpg + ", mileprice=" + mileprice + "]";
 	}
 
 }

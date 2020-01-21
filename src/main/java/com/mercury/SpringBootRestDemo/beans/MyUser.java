@@ -1,5 +1,7 @@
 package com.mercury.SpringBootRestDemo.beans;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,10 +20,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "MY_USER")
-public class MyUser implements UserDetails {
+public class MyUser implements UserDetails, Serializable {
 	@Id
 	@SequenceGenerator(name = "my_user_seq", sequenceName = "MY_USER_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "my_user_seq", strategy = GenerationType.AUTO)
@@ -34,24 +37,30 @@ public class MyUser implements UserDetails {
 	private String email;
 	@Column
 	private String password;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@JoinColumn(name = "profileid")
+	private MyProfile profile;
+
+
 	public MyUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public MyUser(int id){
+
+	public MyUser(int id) {
 		this.id = id;
 	}
-	
-	public MyUser(int id, String firstname, String lastname, String email, String password) {
+
+	public MyUser(int id, String firstname, String lastname, String email, String password, MyProfile profile) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
+		this.profile = profile;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -91,50 +100,62 @@ public class MyUser implements UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	public MyProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(MyProfile profile) {
+		this.profile = profile;
+	}
+	
+
+
+
 
 	@Override
 	public String toString() {
 		return "MyUser [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", profile=" + profile + "]";
 	}
 
 	@Override
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		List<MyProfile> authorities = new ArrayList<>();
+		authorities.add(profile);
+
+
+		return authorities;
 	}
 
 	@Override
-	@JsonIgnore
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return this.email;
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
-	@JsonIgnore
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;

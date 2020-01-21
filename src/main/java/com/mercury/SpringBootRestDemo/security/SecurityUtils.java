@@ -30,7 +30,6 @@ public class SecurityUtils {
     public static void sendAuthenticationSuccessResponse(HttpServletResponse httpServletResponse, int status, String message, Exception exception, MyUser user)
 			throws IOException {
 		Response response = new AuthenticationSuccessResponse(exception == null ? true : false, status, message, user);
-		System.out.println(response);
 		flushResponse(httpServletResponse, response);
 	}
 
@@ -45,6 +44,7 @@ public class SecurityUtils {
 	
 	public static boolean isAdmin(Collection<? extends GrantedAuthority> profiles) {
 		boolean isAdmin = false;
+		System.out.println("Check if is admin in Security Utils");
 		for(GrantedAuthority profle: profiles) {
 			if(profle.getAuthority().equals("ROLE_ADMIN")) {
 				isAdmin = true;

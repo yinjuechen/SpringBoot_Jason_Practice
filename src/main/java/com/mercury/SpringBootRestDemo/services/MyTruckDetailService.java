@@ -26,6 +26,10 @@ public class MyTruckDetailService {
 		return myTruckDetailDao.findAllByTruckModel(myTruckModelDao.findById(modelId).get());
 	}
 	
+	public MyTruckDetail geTruckDetailById(int id){
+		return myTruckDetailDao.findById(id).get();
+	}
+	
 	public void addTruckDetails(MyTruckDetail truckDetails){
 		int id = truckDetails.getTruckModel().getId();
 		System.out.println(id);
@@ -45,6 +49,12 @@ public class MyTruckDetailService {
 		res.addAll(getAllTrucksStartDateIsNull());
 		return res;
 		 
+	}
+	
+	public MyTruckDetail updateTruckDetail(MyTruckDetail tr, int id){
+		MyTruckDetail oldTr = myTruckDetailDao.findById(id).get();
+		oldTr = tr;
+		return myTruckDetailDao.save(oldTr);
 	}
 	
 }

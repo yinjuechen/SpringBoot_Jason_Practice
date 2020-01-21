@@ -2,6 +2,7 @@ package com.mercury.SpringBootRestDemo.services;
 
 import java.util.List;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class MyApplicationService {
 	@Autowired 
 	private MyUserDao myUserDao;
 	public List<MyApplication> getAll(){
+		System.out.println("1111111111111111");
+		System.out.println();
 		return myApplicationDao.findAll();
 	}
 	
@@ -42,5 +45,11 @@ public class MyApplicationService {
 	
 	public List<MyApplication> getAllByUserId(int userId){
 		return myApplicationDao.findAllByUser(myUserDao.findById(userId).get());
+	}
+	
+	public MyApplication updateAppliction(MyApplication application, int id){
+		MyApplication oldApp = myApplicationDao.findById(id).get();
+		oldApp = application;
+		return myApplicationDao.save(oldApp);
 	}
 }
