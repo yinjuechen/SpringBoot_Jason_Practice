@@ -136,7 +136,7 @@ public class MyTruckDetail implements Comparable<MyTruckDetail>{
 	public void setTruckModel(MyTruckModel truckModel) {
 		this.truckModel = truckModel;
 	}
-
+	
 	public List<TruckDetailReserved> getTruckTimeSlots() {
 		return truckTimeSlots;
 	}
@@ -161,7 +161,7 @@ public class MyTruckDetail implements Comparable<MyTruckDetail>{
 	public String toString() {
 		return "MyTruckDetail [id=" + id + ", plate=" + plate + ", state=" + state + ", vin=" + vin + ", mileage="
 				+ mileage + ", startdate=" + startdate + ", enddate=" + enddate + ", truckModel=" + truckModel
-				+ ", truckTimeSlots=" + truckTimeSlots + ", autoinsurance=" + autoinsurance + "]";
+				+ ", truckTimeSlots=" + ", autoinsurance=" + autoinsurance + "]";
 	}
 
 

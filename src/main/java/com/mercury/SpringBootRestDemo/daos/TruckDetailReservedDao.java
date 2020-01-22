@@ -2,8 +2,6 @@ package com.mercury.SpringBootRestDemo.daos;
 
 import java.util.Date;
 import java.util.List;
-
-import org.assertj.core.util.diff.myers.MyersDiff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -35,3 +33,5 @@ public interface TruckDetailReservedDao extends JpaRepository<TruckDetailReserve
 	
 	List<TruckDetailReserved> findAllByTruckDetail(MyTruckDetail truckDetail);
 }
+
+
